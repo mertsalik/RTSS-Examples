@@ -20,3 +20,6 @@
 ipch
 # Binaries folder
 Debug
+
+# Custom Projects
+SolarExample

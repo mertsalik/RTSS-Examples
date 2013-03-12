@@ -7,6 +7,8 @@
 GLdouble angle = 0;
 GLHelper *gl;
 
+
+// code from 3. week
 static void Draw(void)
 {
 	/*
@@ -95,6 +97,7 @@ int main (int argc, char ** argv)
 	//glMatrixMode(GL_MODELVIEW);
 
 	UIHelper::DisplayCallback(0);
+	gl->BindKeyFunctions();
 	glutDisplayFunc(gl->Draw);
 	glutMainLoop();
 

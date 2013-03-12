@@ -9,4 +9,4 @@ using namespace std;
 
 #define PROJNAME "Solar System"
 
-#define PLANETCOUNT 6
+#define PLANETCOUNT 10

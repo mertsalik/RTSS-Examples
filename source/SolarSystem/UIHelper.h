@@ -15,6 +15,20 @@ private:
 	GLint orbitDegreesX;
 	GLint orbitDegreesY;
 
+
+	GLfloat mercuryRadius;
+	GLfloat venusRadius;
+	GLfloat marsRadius ;
+	GLfloat jupiterRadius;
+	GLfloat saturnRadius ;
+	GLfloat uranusRadius;
+	GLfloat neptuneRadius;
+	GLfloat plutoRadius;
+	GLfloat sunRadius;
+
+
+
+
 	/**
 	*	Singleton
 	*/
@@ -51,6 +65,14 @@ public:
 	GLuint NeptuneTextureIndex;
 	GLuint PlutoTextureIndex;
 	GLuint RingTextureIndex;
+	GLuint SkyBoxBackIndex;
+	GLuint SkyBoxFrontIndex;
+	GLuint SkyBoxLeftIndex;
+	GLuint SkyBoxRightIndex;
+	GLuint SkyBoxTopIndex;
+
+	GLfloat CurrentEarthRotation;
+	GLfloat EarthDaysLeft;
 
 	/**
 	*	Methods
@@ -119,6 +141,18 @@ public:
 	*/
 
 	static void DisplayCallback(int value);
+
+
+	/**
+	*	Planet oriented Methods
+	*/
+	void DrawSun();
+	void DrawOtherPlanets();
+	void drawGenericPlanet(GLfloat inclination, GLfloat orbitDuration,
+		GLfloat orbitRadius, GLfloat rotationDuration, GLuint texturename, GLfloat radius);
+	void DrawEarthAndMoon();
+	void DrawMarsPhobosAndDeimos();
+	void DrawSkyBox();
 
 };
 

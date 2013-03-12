@@ -90,73 +90,26 @@ void GLHelper::Draw(){
 	gluPerspective(UIHelper::getInstance().getCurrentZoom(), UIHelper::getInstance().getAspectRatio(), UIHelper::getInstance().getMaxZoomIn(), UIHelper::getInstance().getMaxZoomOut());
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(0, 0, -80, 0, 0, 0, 0, 1, 0);
+	gluLookAt(0, 0, -40, 0, 0, 0, 0, 1, 0);
 	glRotated(UIHelper::getInstance().getOrbitDegreeX(), 0, 1, 0);
 	glRotated(UIHelper::getInstance().getOrbitDegreeY(), 1, 0, 0);
 	glLightfv(GL_LIGHT0, GL_POSITION, UIHelper::getInstance().position);
 
 	glEnable(GL_TEXTURE_2D);
-	GLUquadric* quadric = gluNewQuadric();
-	gluQuadricNormals(quadric, GLU_SMOOTH);
-	gluQuadricTexture(quadric, GL_TRUE);
 
-
-	//Sun
-	glBindTexture(GL_TEXTURE_2D, UIHelper::getInstance().SunTextureIndex);
-	glMaterialfv(GL_FRONT, GL_EMISSION, UIHelper::getInstance().getGlowing());
-    gluSphere(quadric, 3, 24, 24);
-	glMaterialfv(GL_FRONT, GL_EMISSION, UIHelper::getInstance().getUnglowing());
-    glPushMatrix();
-
-	//Earth
-	glBindTexture(GL_TEXTURE_2D, UIHelper::getInstance().EarthTextureIndex);
-	glRotated(2*UIHelper::getInstance().getAngle(), 0, 1, 0);
-    glTranslatef(7.f, 0.f, 0.f);
-    glRotated(UIHelper::getInstance().getAngle(), 0, 1, 0);
-    gluSphere(quadric, 1, 24, 24);
-    glPushMatrix();
-
-	//Moon
-	glBindTexture(GL_TEXTURE_2D, UIHelper::getInstance().MoonTextureIndex);
-    glRotated(4*UIHelper::getInstance().getAngle(), 0, 1, 0);
-    glTranslatef(2.f, 0.f, 0.f);
-    glRotated(UIHelper::getInstance().getAngle(), 0, 1, 0);
-    gluSphere(quadric, 0.5, 24, 24);
-    
-    glPopMatrix();
-    glPopMatrix();
+	UIHelper::getInstance().DrawSun();
+	UIHelper::getInstance().DrawEarthAndMoon();
+	UIHelper::getInstance().DrawOtherPlanets();
+	UIHelper::getInstance().DrawMarsPhobosAndDeimos();
+	// UIHelper::getInstance().DrawSkyBox();
+		
 	
-	//Mars
-	glBindTexture(GL_TEXTURE_2D, UIHelper::getInstance().MarsTextureIndex);
-    glRotated(UIHelper::getInstance().getAngle(), 0, 1, 0);
-    glTranslatef(20.0f, 0.f, 0.f);
-    glRotated(UIHelper::getInstance().getAngle(), 0, 1, 0);
-    gluSphere(quadric, 1.5, 24, 24);
-    glPushMatrix();
-    
-	//Phobos (1st moon of Mars)
-	glBindTexture(GL_TEXTURE_2D, UIHelper::getInstance().NeptuneTextureIndex);
-    glRotated(4*UIHelper::getInstance().getAngle(), 0, 1, 0);
-    glTranslatef(4.f, 0.f, 0.f);
-    glRotated(UIHelper::getInstance().getAngle(), 0, 1, 0);
-    gluSphere(quadric, 0.5, 24, 24);
-    glPopMatrix();
-    
-	//Deimos (2nd moon of Mars)
-	glBindTexture(GL_TEXTURE_2D, UIHelper::getInstance().PlutoTextureIndex);
-    glRotated(4*UIHelper::getInstance().getAngle() + 150 , 0, 1, 0);
-    glTranslatef(7.f, 0.f, 0.f);
-    glRotated(UIHelper::getInstance().getAngle(), 0, 1, 0);
-    gluSphere(quadric, 1, 24, 24);
-
-	glPopMatrix();
-	glPopMatrix();
-
 	glLoadIdentity();
-
+	
 	//Setting camera location and angle
 	gluLookAt(0, 0, -100, 0, 0, 0, 0, 1,  0);
 
     glutSwapBuffers();
+	
 
 }
